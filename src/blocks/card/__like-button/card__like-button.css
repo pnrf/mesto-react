@@ -1,0 +1,16 @@
+.card__like-button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-image: url(../../../images/heart-button-disabled.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 22px;
+  height: 19px;
+  cursor: pointer;
+}
+
+.card__like-button:hover {
+  opacity: .5;
+}
