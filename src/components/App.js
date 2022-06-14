@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+// import './App.css';
 
 function App() {
   return (
@@ -23,12 +23,12 @@ function App() {
     <div className="root">
       <div className="page">
         <header className="header">
-          <img src="<%=require('./images/logo-white.svg')%>" alt="Логотип" className="header__logo">
+          <img src="<%=require('./images/logo-white.svg')%>" alt="Логотип" className="header__logo" />
         </header>
         <main>
           <section className="profile">
             <div className="profile__container">
-              <button className="profile__avatar-edit-button" type="button"><img src="<%=require('./images/img-profile-avatar.jpg')%>" alt="Аватар для профайла" className="profile__avatar"></button>
+              <button className="profile__avatar-edit-button" type="button"><img src="<%=require('./images/img-profile-avatar.jpg')%>" alt="Аватар для профайла" className="profile__avatar" /></button>
               <div className="profile__describe">
                 <div className="profile__title-wrapper">
                   <h1 className="profile__title">Жак-Ив Кусто</h1>
@@ -47,7 +47,7 @@ function App() {
           <p className="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
       </div>
-    <!-- POPUP 1: profile editing form -->
+    {/* <!-- POPUP 1: profile editing form --> */}
       <section className="popup popup_type_profile">
         <div className="popup__container">
           <button className="popup__close-button" type="button"></button>
@@ -67,7 +67,7 @@ function App() {
           </div>
         </div>
       </section>
-    <!-- POPUP 2: change profile avatar -->
+    {/* <!-- POPUP 2: change profile avatar --> */}
       <section className="popup popup_type_avatar">
         <div className="popup__container">
           <button className="popup__close-button" type="button"></button>
@@ -83,7 +83,7 @@ function App() {
           </div>
         </div>
       </section>
-    <!-- POPUP 3: card adding form -->
+    {/* <!-- POPUP 3: card adding form --> */}
       <section className="popup popup_type_cards">
         <div className="popup__container">
           <button className="popup__close-button" type="button"></button>
@@ -103,7 +103,7 @@ function App() {
           </div>
         </div>
       </section>
-    <!-- POPUP 4: confirm card deletion -->
+    {/* <!-- POPUP 4: confirm card deletion --> */}
       <section className="popup popup_type_confirm-deletion">
         <div className="popup__container">
           <button className="popup__close-button" type="button"></button>
@@ -115,18 +115,18 @@ function App() {
           </div>
         </div>
       </section>
-      <!-- POPUP 5: image preview -->
+      {/* <!-- POPUP 5: image preview --> */}
       <section className="popup popup_type_image">
         <figure className="popup__container popup__container_type_image">
           <button className="popup__close-button popup__close-button_type_image" type="button"></button>
-          <img src="#" alt="" className="popup__image">
+          <img src="#" alt="" className="popup__image" />
           <figcaption className="popup__figcaption"></figcaption>
         </figure>
       </section>
-    <!-- TEMPLATE for cards-->
+    {/* <!-- TEMPLATE for cards--> */}
       <template id="template" className="template">
         <li className="card">
-          <img src="#" alt="" className="card__image">
+          <img src="#" alt="" className="card__image" />
           <button className="card__del-button" type="button"></button>
           <div className="card__wrapper">
             <h2 className="card__title"></h2>
