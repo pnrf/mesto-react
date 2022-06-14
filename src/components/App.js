@@ -5,17 +5,39 @@ import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
+import React from "react";
 
 function App() {
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false)
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
+
+  function handleEditProfileClick() {
+    setEditProfilePopupOpen(true);
+  };
+
+  function handleAddPlaceClick() {
+    setAddPlacePopupOpen(true);
+  };
+
+  function handleEditAvatarClick() {
+    setEditAvatarPopupOpen(true);
+  };
+
   return (
     <div className="root">
       <div className="page">
         <Header />
-        <Main />
+        <Main
+          onEditProfile = {handleEditProfileClick}
+          onAddPlace = {handleAddPlaceClick}
+          onEditAvatar = {handleEditAvatarClick}
+        />
         <Footer />
       </div>
 
       <PopupWithForm
+        isOpen = {isEditProfilePopupOpen}
         name = {'profile'}
         title = {'Редактировать профиль'}
         children = {(
@@ -33,6 +55,7 @@ function App() {
       />
 
       <PopupWithForm
+        isOpen = {isEditAvatarPopupOpen}
         name = {'avatar'}
         title = {'Обновить аватар'}
         children = {(
@@ -46,6 +69,7 @@ function App() {
       />
 
       <PopupWithForm
+        isOpen = {isAddPlacePopupOpen}
         name = {'cards'}
         title = {'Новое место'}
         children = {(
@@ -73,17 +97,6 @@ function App() {
       <ImagePopup />
 
 
-
-
-
-      {/* <!-- POPUP 5: image preview --> */}
-      <section className="popup popup_type_image">
-        <figure className="popup__container popup__container_type_image">
-          <button className="popup__close-button popup__close-button_type_image" type="button"></button>
-          <img src="#" alt="" className="popup__image" />
-          <figcaption className="popup__figcaption"></figcaption>
-        </figure>
-      </section>
     {/* <!-- TEMPLATE for cards--> */}
       <template id="template" className="template">
         <li className="card">
