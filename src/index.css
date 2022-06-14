@@ -1,3 +1,7 @@
+html {
+  background-color: #000;
+}
+
 /** общие стили */
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/fonts.css);
