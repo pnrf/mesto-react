@@ -9,7 +9,6 @@ function Main(props) {
   const [userAvatar, setUserAvatar] = React.useState(initialAvatar)
   const [cards, setCards] = React.useState([])
 
-
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()]).then(([profileInfo, card]) => {
       setUserName(profileInfo.name)
