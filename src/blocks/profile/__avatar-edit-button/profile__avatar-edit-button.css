@@ -7,6 +7,9 @@
   border: none;
   border-radius: 50%;
   background: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   /* transition: background-color 0.2s linear; */
 }
 
