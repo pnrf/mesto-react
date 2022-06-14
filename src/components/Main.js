@@ -12,7 +12,6 @@ function Main(props) {
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()]).then(([profileInfo, card]) => {
-      console.log('AAA', card);
       setUserName(profileInfo.name)
       setUserDescription(profileInfo.about)
       setUserAvatar(profileInfo.avatar)
@@ -49,6 +48,7 @@ function Main(props) {
               name = {card.name}
               link = {card.link}
               likes = {card.likes.length}
+              onCardClick={props.onCardClick}
             />
           ))}
         </ul>
