@@ -9,7 +9,7 @@
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   /* transition: background-color 0.2s linear; */
 }
 

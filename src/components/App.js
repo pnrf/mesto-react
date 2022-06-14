@@ -107,23 +107,7 @@ function App() {
         onClose = {closeAllPopups}
       />
 
-
-    {/* <!-- TEMPLATE for cards--> */}
-      <template id="template" className="template">
-        <li className="card">
-          <img src="#" alt="" className="card__image" />
-          <button className="card__del-button" type="button"></button>
-          <div className="card__wrapper">
-            <h2 className="card__title"></h2>
-            <div className="card__likes-wrapper">
-              <button className="card__like-button" type="button"></button>
-              <p className="card__likes-counter"></p>
-            </div>
-          </div>
-        </li>
-      </template>
     </div>
-
   );
 }
 
