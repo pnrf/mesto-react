@@ -1,6 +1,7 @@
-import logo from '../logo.svg';
+
 // import './App.css';
-import '../index.css'
+import '../index.css';
+import logo from '../images/logo-white.svg';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
     <div className="root">
       <div className="page">
         <header className="header">
-          <img src="<%=require('./images/logo-white.svg')%>" alt="Логотип" className="header__logo" />
+          <img src={logo} alt="Логотип" className="header__logo" />
         </header>
         <main>
           <section className="profile">
