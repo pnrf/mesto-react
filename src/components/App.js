@@ -57,11 +57,11 @@ function App() {
         children = {
           <>
             <label className="popup__field">
-              <input id="name-input" name="userName" className="popup__input" type="text" placeholder="Имя" minlength="2" maxlength="40" required />
+              <input id="name-input" name="userName" className="popup__input" type="text" placeholder="Имя" minLength="2" maxLength="40" required />
               <span className="popup__input-error"></span>
             </label>
             <label className="popup__field">
-              <input id="about-input" name="userAbout" className="popup__input" type="text" placeholder="О себе" minlength="2" maxlength="200" required />
+              <input id="about-input" name="userAbout" className="popup__input" type="text" placeholder="О себе" minLength="2" maxLength="200" required />
               <span className="popup__input-error"></span>
             </label>
           </>
@@ -89,7 +89,7 @@ function App() {
         children = {
           <>
             <label className="popup__field">
-              <input id="place-input" name="name" className="popup__input" type="text" placeholder="Название" minlength="2" maxlength="30" required />
+              <input id="place-input" name="name" className="popup__input" type="text" placeholder="Название" minLength="2" maxLength="30" required />
               <span className="popup__input-error"></span>
             </label>
             <label className="popup__field">
