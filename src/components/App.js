@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -60,6 +61,14 @@ function App() {
     });
   }
 
+  function handleUpdateAvatar(data) {api.updateProfileAvatar(data).then((newAvatar) => {
+      setCurrentUser(newAvatar);
+      closeAllPopups();
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root">
@@ -82,36 +91,10 @@ function App() {
           onUpdateUser = {handleUpdateUser}
         />
 
-        {/* <PopupWithForm
-          isOpen = {isEditProfilePopupOpen}
-          onClose = {closeAllPopups}
-          name = 'profile'
-          title = 'Редактировать профиль'
-          children = {
-            <>
-              <label className="popup__field">
-                <input id="name-input" name="userName" className="popup__input" type="text" placeholder="Имя" minLength="2" maxLength="40" required />
-                <span className="popup__input-error"></span>
-              </label>
-              <label className="popup__field">
-                <input id="about-input" name="userAbout" className="popup__input" type="text" placeholder="О себе" minLength="2" maxLength="200" required />
-                <span className="popup__input-error"></span>
-              </label>
-            </>
-          }
-        /> */}
-
-        <PopupWithForm
+        <EditAvatarPopup
           isOpen = {isEditAvatarPopupOpen}
           onClose = {closeAllPopups}
-          name = 'avatar'
-          title = 'Обновить аватар'
-          children = {
-            <label className="popup__field">
-              <input id="avatar-input" name="url" className="popup__input" type="url" placeholder="Ссылка на аватар" required />
-              <span className="popup__input-error"></span>
-            </label>
-          }
+          onUpdateAvatar = {handleUpdateAvatar}
         />
 
         <PopupWithForm
