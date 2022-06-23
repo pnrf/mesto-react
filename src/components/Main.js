@@ -1,7 +1,6 @@
 import React from 'react';
 import api from '../utils/api';
 import Card from './Card';
-// import initialAvatar from '../images/img-profile-avatar.jpg';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, setCards}) {
@@ -24,42 +23,14 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, setC
       });
     }
   }
-  // function handleCardLike(card) {
-  //   const isLiked = card.likes.some(i => i._id === currentUser._id);
-  //   console.log("FF", card.likes);
-
-  //   api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-  //       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-  //     }).catch((err) => {
-  //       console.error(err);
-  //     });
-  // }
 
   function handleCardDelete(card) {
-
     api.removeCard(card._id).then(() => {
       setCards((items) => items.filter((c) => c._id !== card._id && c));
     }).catch((err) => {
       console.error(err);
     });
   }
-
-
-  // const [userName, setUserName] = React.useState('Жак-Ив Кусто')
-  // const [userDescription, setUserDescription] = React.useState('Исследователь океана')
-  // const [userAvatar, setUserAvatar] = React.useState(initialAvatar)
-  // const [cards, setCards] = React.useState([])
-
-  // useEffect(() => {
-  //   Promise.all([api.getUserInfo(), api.getInitialCards()]).then(([profileInfo, card]) => {
-  //     setUserName(profileInfo.name)
-  //     setUserDescription(profileInfo.about)
-  //     setUserAvatar(profileInfo.avatar)
-  //     setCards(card)
-  //   }).catch((err) => {
-  //     console.error(err);
-  //   })
-  // }, [])
 
   return (
     <main>

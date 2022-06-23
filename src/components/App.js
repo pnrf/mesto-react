@@ -3,6 +3,7 @@ import api from '../utils/api';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
+import EditProfilePopup from './EditProfilePopup';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -51,6 +52,14 @@ function App() {
     setSelectedCard(null);
   }
 
+  function handleUpdateUser(data) {api.updateUserInfo(data).then((newUser) => {
+      setCurrentUser(newUser);
+      closeAllPopups();
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root">
@@ -67,7 +76,13 @@ function App() {
 
         <Footer />
 
-        <PopupWithForm
+        <EditProfilePopup
+          isOpen = {isEditProfilePopupOpen}
+          onClose = {closeAllPopups}
+          onUpdateUser = {handleUpdateUser}
+        />
+
+        {/* <PopupWithForm
           isOpen = {isEditProfilePopupOpen}
           onClose = {closeAllPopups}
           name = 'profile'
@@ -84,7 +99,7 @@ function App() {
               </label>
             </>
           }
-        />
+        /> */}
 
         <PopupWithForm
           isOpen = {isEditAvatarPopupOpen}
