@@ -9,6 +9,7 @@ html {
 /** card */
 @import url(./blocks/card/card.css);
 @import url(./blocks/card/__del-button/card__del-button.css);
+@import url(./blocks/card/__del-button/_hidden/card__del-button_hidden.css);
 @import url(./blocks/card/__image/card__image.css);
 @import url(./blocks/card/__like-button/card__like-button.css);
 @import url(./blocks/card/__like-button/_active/card__like-button_active.css);
