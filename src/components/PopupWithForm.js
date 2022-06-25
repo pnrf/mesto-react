@@ -14,6 +14,17 @@ function PopupWithForm({isOpen, onClose, onSubmit, name, title, children}) {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      function handleOverlayClose(event) {
+        if (event.target.classList.contains('popup_opened')) {
+          onClose();
+        }
+      }
+      document.addEventListener('mousedown', handleOverlayClose);
+      return () => {document.removeEventListener('mousedown', handleOverlayClose)}
+    }
+  }, [isOpen])
 
   return (
     <section className={`popup popup_type_${name} ${isOpen && `popup_opened`}`}>
