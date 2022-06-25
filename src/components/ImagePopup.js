@@ -1,4 +1,19 @@
+import { useEffect } from 'react';
+
 function ImagePopup({card, onClose}) {
+
+  useEffect(() => {
+    if (card) {
+      function handleEscClose(event) {
+        if (event.key === 'Escape') {
+          onClose();
+        }
+      }
+      document.addEventListener('keydown', handleEscClose);
+      return () => {document.removeEventListener('keydown', handleEscClose);}
+    }
+  }, [card]);
+
   return (
     <section className={`popup popup_type_image ${card && 'popup_opened'}`} >
       <figure className="popup__container popup__container_type_image">
