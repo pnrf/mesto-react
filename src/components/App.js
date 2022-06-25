@@ -19,6 +19,8 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null)
   const [isConfirmationPopupOpen, setConfirmationPopupOpen] = React.useState(null)
 
+  const [isLoading, setLoading] = React.useState(false)
+
   const [currentUser, setCurrentUser] = React.useState({})
   const [cards, setCards] = React.useState([]);
 
@@ -58,12 +60,13 @@ function App() {
   };
 
   function handleUpdateUser(data) {
+    setLoading(true);
     api.updateUserInfo(data).then((newUser) => {
       setCurrentUser(newUser);
       closeAllPopups();
     }).catch((err) => {
       console.error(err);
-    });
+    }).finally(() => {setLoading(false)});
   }
 
   function handleEditAvatarClick() {
@@ -71,12 +74,13 @@ function App() {
   };
 
   function handleUpdateAvatar(data) {
+    setLoading(true);
     api.updateProfileAvatar(data).then((newAvatar) => {
       setCurrentUser(newAvatar);
       closeAllPopups();
     }).catch((err) => {
       console.error(err);
-    });
+    }).finally(() => {setLoading(false)});
   }
 
   function handleAddPlaceClick() {
@@ -84,12 +88,13 @@ function App() {
   };
 
   function handleAddPlaceSubmit(data) {
+    setLoading(true);
     api.addNewCard(data).then((newCard) => {
       setCards([newCard, ...cards]);
       closeAllPopups();
     }).catch((err) => {
       console.error(err);
-    });
+    }).finally(() => {setLoading(false)});
   }
 
   function handleConfimationClick(card) {
@@ -134,18 +139,21 @@ function App() {
           isOpen = {isEditProfilePopupOpen}
           onClose = {closeAllPopups}
           onUpdateUser = {handleUpdateUser}
+          isLoading = {isLoading}
         />
 
         <EditAvatarPopup
           isOpen = {isEditAvatarPopupOpen}
           onClose = {closeAllPopups}
           onUpdateAvatar = {handleUpdateAvatar}
+          isLoading = {isLoading}
         />
 
         <AddPlacePopup
           isOpen = {isAddPlacePopupOpen}
           onClose = {closeAllPopups}
           onAddPlace = {handleAddPlaceSubmit}
+          isLoading = {isLoading}
         />
 
         <ConfirmationPopup
