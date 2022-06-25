@@ -7,7 +7,7 @@ import Main from './Main';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
-import PopupWithForm from './PopupWithForm';
+import ConfirmationPopup from './ConfirmationPopup'
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -17,6 +17,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = React.useState(null)
+  const [isConfirmationPopupOpen, setConfirmationPopupOpen] = React.useState(null)
 
   const [currentUser, setCurrentUser] = React.useState({})
   const [cards, setCards] = React.useState([]);
@@ -52,14 +53,6 @@ function App() {
     }
   }
 
-  function handleCardDelete(card) {
-    api.removeCard(card._id).then(() => {
-      setCards((items) => items.filter((c) => c._id !== card._id && c));
-    }).catch((err) => {
-      console.error(err);
-    });
-  }
-
   function handleEditProfileClick() {
     setEditProfilePopupOpen(true);
   };
@@ -92,9 +85,20 @@ function App() {
 
   function handleAddPlaceSubmit(data) {
     api.addNewCard(data).then((newCard) => {
-      console.log(newCard);
       setCards([newCard, ...cards]);
       closeAllPopups();
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
+  function handleConfimationClick(card) {
+    setConfirmationPopupOpen(card);
+  }
+
+  function handleCardDelete(card) {
+    api.removeCard(card._id).then(() => {
+      setCards((items) => items.filter((c) => c._id !== card._id && c));
     }).catch((err) => {
       console.error(err);
     });
@@ -105,6 +109,7 @@ function App() {
     setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
     setSelectedCard(null);
+    setConfirmationPopupOpen(null);
   }
 
 
@@ -119,8 +124,8 @@ function App() {
           onEditAvatar = {handleEditAvatarClick}
           onCardClick = {handleCardClick}
           onCardLike = {handleCardLike}
-          onCardDelete = {handleCardDelete}
           cards={cards}
+          onConfirmCardDelete = {handleConfimationClick}
         />
 
         <Footer />
@@ -143,9 +148,12 @@ function App() {
           onAddPlace = {handleAddPlaceSubmit}
         />
 
-        <PopupWithForm
+        <ConfirmationPopup
+          card = {isConfirmationPopupOpen}
+          onClose = {closeAllPopups}
           name = 'confirm-deletion'
           title = 'Вы уверены?'
+          onCardDelete = {handleCardDelete}
         />
 
         <ImagePopup
