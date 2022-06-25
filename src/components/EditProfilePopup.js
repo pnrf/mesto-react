@@ -39,6 +39,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
       onSubmit = {handleSubmit}
       name = 'profile'
       title = 'Редактировать профиль'
+      submitButton = 'Сохранить'
       children = {
         <>
           <label className="popup__field">

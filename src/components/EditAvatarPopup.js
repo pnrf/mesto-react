@@ -23,6 +23,7 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
       onSubmit = {handleSubmit}
       name = 'avatar'
       title = 'Обновить аватар'
+      submitButton = 'Обновить'
       children = {
         <label className="popup__field">
           <input id="avatar-input" ref={ref} name="url" className="popup__input" type="url" placeholder="Ссылка на аватар" required />

@@ -36,6 +36,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
       onSubmit = {handleSubmit}
       name = 'cards'
       title = 'Новое место'
+      submitButton = 'Добавить'
       children = {
         <>
           <label className="popup__field">

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function PopupWithForm({isOpen, onClose, onSubmit, name, title, children}) {
+function PopupWithForm({isOpen, onClose, onSubmit, name, title, submitButton, children}) {
 
   useEffect(() => {
     if (isOpen) {
@@ -34,7 +34,7 @@ function PopupWithForm({isOpen, onClose, onSubmit, name, title, children}) {
           <h3 className="popup__title">{title}</h3>
           <form name={`popup-${name}-form`} className="popup__input-list" onSubmit={onSubmit}>
             {children}
-            <button className="popup__save-button" type="submit">Сохранить</button>
+            <button className="popup__save-button" type="submit">{submitButton}</button>
           </form>
         </div>
       </div>
