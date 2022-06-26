@@ -3,23 +3,21 @@ export default class FormValidator {
 
     this._formElement = formElement;
 
+    this._inputFieldSelector = formSelectors.inputFieldSelector;
+
     this._inputSelector = formSelectors.inputSelector;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-
-    this._inputFieldSelector = formSelectors.inputFieldSelector;
 
     this._inputErrorMessageClass = formSelectors.inputErrorMessageClass;
     this._inputErrorUnderlineClass = formSelectors.inputErrorUnderlineClass;
     this._activeErrorClass = formSelectors.activeErrorClass;
 
     this._inactiveSubmitButtonClass = formSelectors.inactiveSubmitButtonClass;
-
     this._popupSubmitButtonElement = this._formElement.querySelector(formSelectors.popupSubmitButtonSelector);
   }
 
   enableValidation = () => {
     this._setEventListeners();
-    console.log('сработал enableValidation');
   }
 
   _setEventListeners = () => {
@@ -76,8 +74,6 @@ export default class FormValidator {
 
 
   resetValidation() {
-    console.log('сработал resetValidation');
-
     this.toggleButtonState();
 
     this._inputList.forEach((inputElement) => {
