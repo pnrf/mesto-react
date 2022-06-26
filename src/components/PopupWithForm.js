@@ -1,29 +1,12 @@
 import { useEffect } from 'react';
 import FormValidator from './FormValidator';
 
-function PopupWithForm({isOpen, onClose, onSubmit, isLoading, name, title, submitButton, submitBtnLoading, children}) {
+function PopupWithForm({isOpen, onClose, onCloseEsc, onCloseOverlay, onSubmit, isLoading, name, title, submitButton, submitBtnLoading, children}) {
 
   useEffect(() => {
     if (isOpen) {
-      function handleEscClose(event) {
-        if (event.key === 'Escape') {
-          onClose();
-        }
-      }
-      document.addEventListener('keydown', handleEscClose);
-      return () => {document.removeEventListener('keydown', handleEscClose);}
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (isOpen) {
-      function handleOverlayClose(event) {
-        if (event.target.classList.contains('popup_opened')) {
-          onClose();
-        }
-      }
-      document.addEventListener('mousedown', handleOverlayClose);
-      return () => {document.removeEventListener('mousedown', handleOverlayClose)}
+      onCloseEsc();
+      onCloseOverlay();
     }
   }, [isOpen])
 

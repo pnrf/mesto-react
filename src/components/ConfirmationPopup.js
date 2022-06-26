@@ -1,30 +1,13 @@
 import { useEffect } from 'react';
 
-function ConfirmationPopup({card, onClose, name, title, onCardDelete}) {
+function ConfirmationPopup({card, onClose, onCloseEsc, onCloseOverlay, name, title, onCardDelete}) {
 
   useEffect(() => {
     if (card) {
-      function handleEscClose(event) {
-        if (event.key === 'Escape') {
-          onClose();
-        }
-      }
-      document.addEventListener('keydown', handleEscClose);
-      return () => {document.removeEventListener('keydown', handleEscClose)}
+      onCloseEsc();
+      onCloseOverlay();
     }
   }, [card]);
-
-  useEffect(() => {
-    if (card) {
-      function handleOverlayClose(event) {
-        if (event.target.classList.contains('popup_opened')) {
-          onClose();
-        }
-      }
-      document.addEventListener('mousedown', handleOverlayClose);
-      return () => {document.removeEventListener('mousedown', handleOverlayClose)}
-    }
-  }, [card])
 
   function handleDeleteClick() {
     onCardDelete(card);

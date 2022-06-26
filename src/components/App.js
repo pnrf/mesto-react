@@ -118,6 +118,26 @@ function App() {
     setConfirmationPopupOpen(null);
   }
 
+  function closePopupWithEsc() {
+    function handleEscClose(event) {
+      if (event.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    document.addEventListener('keydown', handleEscClose);
+    return () => {document.removeEventListener('keydown', handleEscClose)};
+  }
+
+  function closePopupWithClickOnOverlay() {
+    function handleOverlayClose(event) {
+      if (event.target.classList.contains('popup_opened')) {
+        closeAllPopups();
+      }
+    }
+    document.addEventListener('mousedown', handleOverlayClose);
+    return () => {document.removeEventListener('mousedown', handleOverlayClose)};
+  }
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -139,6 +159,8 @@ function App() {
         <EditProfilePopup
           isOpen = {isEditProfilePopupOpen}
           onClose = {closeAllPopups}
+          onCloseEsc = {closePopupWithEsc}
+          onCloseOverlay = {closePopupWithClickOnOverlay}
           onUpdateUser = {handleUpdateUser}
           isLoading = {isLoading}
         />
@@ -146,6 +168,8 @@ function App() {
         <EditAvatarPopup
           isOpen = {isEditAvatarPopupOpen}
           onClose = {closeAllPopups}
+          onCloseEsc = {closePopupWithEsc}
+          onCloseOverlay = {closePopupWithClickOnOverlay}
           onUpdateAvatar = {handleUpdateAvatar}
           isLoading = {isLoading}
         />
@@ -153,6 +177,8 @@ function App() {
         <AddPlacePopup
           isOpen = {isAddPlacePopupOpen}
           onClose = {closeAllPopups}
+          onCloseEsc = {closePopupWithEsc}
+          onCloseOverlay = {closePopupWithClickOnOverlay}
           onAddPlace = {handleAddPlaceSubmit}
           isLoading = {isLoading}
         />
@@ -160,6 +186,8 @@ function App() {
         <ConfirmationPopup
           card = {isConfirmationPopupOpen}
           onClose = {closeAllPopups}
+          onCloseEsc = {closePopupWithEsc}
+          onCloseOverlay = {closePopupWithClickOnOverlay}
           name = 'confirm-deletion'
           title = 'Вы уверены?'
           onCardDelete = {handleCardDelete}
@@ -168,6 +196,8 @@ function App() {
         <ImagePopup
           card = {selectedCard}
           onClose = {closeAllPopups}
+          onCloseEsc = {closePopupWithEsc}
+          onCloseOverlay = {closePopupWithClickOnOverlay}
         />
       </div>
     </CurrentUserContext.Provider>

@@ -1,7 +1,7 @@
 import React from "react";
 import PopupWithForm from './PopupWithForm';
 
-function AddPlacePopup({isOpen, onClose, onAddPlace, isLoading}) {
+function AddPlacePopup({isOpen, onClose, onCloseEsc, onCloseOverlay, onAddPlace, isLoading}) {
   const [title, setTitle] = React.useState('');
   const [link, setLink] = React.useState('');
 
@@ -33,6 +33,8 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, isLoading}) {
     <PopupWithForm
       isOpen = {isOpen}
       onClose = {onClose}
+      onCloseEsc = {onCloseEsc}
+      onCloseOverlay = {onCloseOverlay}
       onSubmit = {handleSubmit}
       isLoading = {isLoading}
       name = 'cards'
@@ -53,7 +55,6 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, isLoading}) {
       }
     />
   )
-
 }
 
 export default AddPlacePopup;
