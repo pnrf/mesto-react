@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import FormValidator from './FormValidator';
 
 function PopupWithForm({isOpen, onClose, onCloseEsc, onCloseOverlay, onSubmit, isLoading, name, title, submitButton, submitBtnLoading, children}) {
 
@@ -8,29 +7,6 @@ function PopupWithForm({isOpen, onClose, onCloseEsc, onCloseOverlay, onSubmit, i
       onCloseEsc();
       onCloseOverlay();
     }
-  }, [isOpen])
-
-  useEffect (() => {
-    if (isOpen) {
-      let newFormValidator = new FormValidator({
-        formElement: document.querySelector(`[name="${`popup-${name}-form`}"]`),
-        formSelectors: {
-          inputFieldSelector: '.popup__field',
-          inputSelector: '.popup__input',
-          inputErrorMessageClass: '.popup__input-error',
-          inputErrorUnderlineClass: 'popup__input_type_error',
-          activeErrorClass: 'popup__input-error_active',
-          inactiveSubmitButtonClass: 'popup__save-button_inactive',
-          popupSubmitButtonSelector: '.popup__save-button'
-        }
-      });
-
-      newFormValidator.enableValidation();
-      return () => {
-        newFormValidator.resetValidation();
-        newFormValidator = null;
-      }
-    };
   }, [isOpen])
 
   return (
