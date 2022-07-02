@@ -118,24 +118,16 @@ function App() {
     setConfirmationPopupOpen(null);
   }
 
-  function closePopupWithEsc() {
-    function handleEscClose(event) {
-      if (event.key === 'Escape') {
-        closeAllPopups();
-      }
+  function closePopupWithEsc(event) {
+    if (event.key === 'Escape') {
+      closeAllPopups();
     }
-    document.addEventListener('keydown', handleEscClose);
-    return () => {document.removeEventListener('keydown', handleEscClose)};
   }
 
-  function closePopupWithClickOnOverlay() {
-    function handleOverlayClose(event) {
-      if (event.target.classList.contains('popup_opened')) {
-        closeAllPopups();
-      }
+  function closePopupWithClickOnOverlay(event) {
+     if (event.target.classList.contains('popup_opened')) {
+      closeAllPopups();
     }
-    document.addEventListener('mousedown', handleOverlayClose);
-    return () => {document.removeEventListener('mousedown', handleOverlayClose)};
   }
 
 
@@ -186,8 +178,6 @@ function App() {
         <ConfirmationPopup
           card = {isConfirmationPopupOpen}
           onClose = {closeAllPopups}
-          onCloseEsc = {closePopupWithEsc}
-          onCloseOverlay = {closePopupWithClickOnOverlay}
           name = 'confirm-deletion'
           title = 'Вы уверены?'
           onCardDelete = {handleCardDelete}
@@ -196,8 +186,6 @@ function App() {
         <ImagePopup
           card = {selectedCard}
           onClose = {closeAllPopups}
-          onCloseEsc = {closePopupWithEsc}
-          onCloseOverlay = {closePopupWithClickOnOverlay}
         />
       </div>
     </CurrentUserContext.Provider>

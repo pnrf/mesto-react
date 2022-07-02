@@ -1,13 +1,4 @@
-import { useEffect } from 'react';
-
-function ConfirmationPopup({card, onClose, onCloseEsc, onCloseOverlay, name, title, onCardDelete}) {
-
-  useEffect(() => {
-    if (card) {
-      onCloseEsc();
-      onCloseOverlay();
-    }
-  }, [card]);
+function ConfirmationPopup({card, onClose, name, title, onCardDelete}) {
 
   function handleDeleteClick() {
     onCardDelete(card);

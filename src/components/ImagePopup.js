@@ -1,16 +1,7 @@
-import { useEffect } from 'react';
-
-function ImagePopup({card, onClose, onCloseEsc, onCloseOverlay}) {
-
-  useEffect(() => {
-    if (card) {
-      onCloseEsc();
-      onCloseOverlay();
-    }
-  }, [card]);
+function ImagePopup({card, onClose}) {
 
   return (
-    <section className={`popup popup_type_image ${card && 'popup_opened'}`} >
+    <section className={`popup popup_type_image ${card && 'popup_opened'}`}>
       <figure className="popup__container popup__container_type_image">
         <button onClick={onClose} className="popup__close-button popup__close-button_type_image" type="button"></button>
         <img src={card && card.link} alt={card && card.name} className="popup__image" />

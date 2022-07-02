@@ -3,10 +3,23 @@ import { useEffect } from 'react';
 function PopupWithForm({isOpen, onClose, onCloseEsc, onCloseOverlay, onSubmit, isLoading, name, title, submitButton, submitBtnLoading, children}) {
 
   useEffect(() => {
-    if (isOpen) {
-      onCloseEsc();
-      onCloseOverlay();
+    function handleEscClose(event) {
+      if (isOpen) {
+        onCloseEsc(event);
+      }
     }
+    document.addEventListener('keydown', handleEscClose);
+    return () => {document.removeEventListener('keydown', handleEscClose)};
+  }, [isOpen])
+
+  useEffect(() => {
+    function handleOverlayClose(event) {
+      if (isOpen) {
+        onCloseOverlay(event);
+      }
+    }
+    document.addEventListener('mousedown', handleOverlayClose);
+    return () => {document.removeEventListener('mousedown', handleOverlayClose)};
   }, [isOpen])
 
   return (
